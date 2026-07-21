@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { CtaButton } from "@/components/CtaButton";
 import { PageHero } from "@/components/PageHero";
-import { RegistrationForm } from "@/components/RegistrationForm";
 import { Reveal } from "@/components/Reveal";
 import { PageShell, Panel, SectionLabel, SectionTitle } from "@/components/ui";
 import { CONFERENCES, EVENT } from "@/lib/event";
@@ -26,7 +25,7 @@ export default function ConferencesPage() {
         }
         description="Sessions ~45 min, accès libre. Arrive 10 minutes avant."
       >
-        <CtaButton>Je m&apos;inscris au salon →</CtaButton>
+        <CtaButton source="conferences-hero">Je m&apos;inscris au salon →</CtaButton>
       </PageHero>
 
       <PageShell narrow>
@@ -72,20 +71,18 @@ export default function ConferencesPage() {
         </ol>
       </PageShell>
 
-      <section className="border-t border-saem-night/5 bg-white py-14 sm:py-16">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          <Reveal>
-            <SectionLabel>Inscription</SectionLabel>
-            <SectionTitle>Ne rate aucune session</SectionTitle>
-            <p className="mt-3 text-saem-night/65">
-              Inscris-toi pour recevoir le programme final avant le {EVENT.dateShort}.
+      <section className="border-t border-saem-night/5 bg-saem-night py-14 text-white sm:py-16">
+        <div className="mx-auto flex max-w-3xl flex-col items-start gap-6 px-5 sm:px-8 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <SectionLabel tone="yellow">Inscription</SectionLabel>
+            <h2 className="mt-3 font-display text-3xl font-extrabold">
+              Ne rate aucune session
+            </h2>
+            <p className="mt-2 text-white/65">
+              Programme final envoyé avant le {EVENT.dateShort}.
             </p>
-          </Reveal>
-          <Reveal delay={1}>
-            <Panel className="mt-8">
-              <RegistrationForm source="conferences" compact />
-            </Panel>
-          </Reveal>
+          </div>
+          <CtaButton size="lg" source="conferences-cta" />
         </div>
       </section>
     </>

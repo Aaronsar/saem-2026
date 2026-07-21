@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { CtaButton } from "@/components/CtaButton";
 import { PageHero } from "@/components/PageHero";
-import { RegistrationForm } from "@/components/RegistrationForm";
 import { Reveal } from "@/components/Reveal";
 import { PageShell, Panel, SectionLabel, SectionTitle } from "@/components/ui";
 import { EVENT, EXHIBITORS, FACULTIES_ASTERISK } from "@/lib/event";
@@ -42,9 +41,9 @@ export default function ExposantsPage() {
             <span className="text-saem-yellow">sur place</span> ?
           </>
         }
-        description="Prépas, associations, écoles européennes et stands d'étudiants de facultés*."
+        description="Prépas, associations, écoles européennes, média et stands d'étudiants de facultés*."
       >
-        <CtaButton />
+        <CtaButton source="exposants-hero" />
       </PageHero>
 
       <PageShell narrow>
@@ -97,26 +96,41 @@ export default function ExposantsPage() {
       </PageShell>
 
       <section className="border-t border-saem-night/5 bg-white py-14 sm:py-16">
-        <div className="mx-auto grid max-w-6xl items-start gap-10 px-5 sm:px-8 lg:grid-cols-2">
-          <Reveal>
-            <SectionLabel>Partenaires</SectionLabel>
-            <SectionTitle>Vous souhaitez exposer ?</SectionTitle>
-            <p className="mt-3 text-saem-night/70">
-              Prépas, associations ou organismes d&apos;orientation : écrivez-nous.
-            </p>
-            <a
-              href={`mailto:${EVENT.email}?subject=Devenir%20exposant%20SAEM%202026`}
-              className="mt-5 inline-flex font-bold text-saem-turquoise-deep underline-offset-4 hover:underline"
-            >
-              {EVENT.email}
-            </a>
+        <div className="mx-auto grid max-w-6xl items-stretch gap-4 px-5 sm:px-8 md:grid-cols-2">
+          <Reveal className="h-full">
+            <Panel className="flex h-full flex-col justify-between bg-saem-night text-white">
+              <div>
+                <SectionLabel tone="yellow">Exposer</SectionLabel>
+                <h2 className="mt-3 font-display text-2xl font-extrabold sm:text-3xl">
+                  Vous souhaitez un stand ?
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">
+                  Prépas, associations, médias ou organismes d&apos;orientation :
+                  contactez-nous.
+                </p>
+              </div>
+              <a
+                href={`mailto:${EVENT.email}?subject=Devenir%20exposant%20SAEM%202026`}
+                className="mt-8 inline-flex font-bold text-saem-turquoise underline-offset-4 hover:underline"
+              >
+                {EVENT.email}
+              </a>
+            </Panel>
           </Reveal>
-          <Reveal delay={1}>
-            <Panel className="bg-saem-cream/70">
-              <p className="mb-4 font-display text-xl font-bold text-saem-night">
-                Visiteur ? Inscrivez-vous
-              </p>
-              <RegistrationForm source="exposants" compact />
+          <Reveal delay={1} className="h-full">
+            <Panel className="flex h-full flex-col justify-between bg-white">
+              <div>
+                <SectionLabel>Visiter</SectionLabel>
+                <h2 className="mt-3 font-display text-2xl font-extrabold text-saem-night sm:text-3xl">
+                  Venir au salon
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-saem-night/70">
+                  Entrée gratuite sur inscription. Réserve ta place en 60 secondes.
+                </p>
+              </div>
+              <div className="mt-8">
+                <CtaButton source="exposants-cta" />
+              </div>
             </Panel>
           </Reveal>
         </div>

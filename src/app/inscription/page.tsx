@@ -1,16 +1,20 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useEffect } from "react";
 import { PageHero } from "@/components/PageHero";
-import { RegistrationForm } from "@/components/RegistrationForm";
 import { Reveal } from "@/components/Reveal";
+import { useRegistrationModal } from "@/components/RegistrationModalContext";
+import { CtaButton } from "@/components/CtaButton";
 import { PageShell, Panel, SectionLabel } from "@/components/ui";
 import { EVENT } from "@/lib/event";
 
-export const metadata: Metadata = {
-  title: "Inscription",
-  description: `Inscription gratuite au ${EVENT.name} — ${EVENT.dateLabel} à Paris.`,
-};
-
 export default function InscriptionPage() {
+  const { openModal } = useRegistrationModal();
+
+  useEffect(() => {
+    openModal("page-inscription");
+  }, [openModal]);
+
   return (
     <>
       <PageHero
@@ -23,13 +27,15 @@ export default function InscriptionPage() {
           </>
         }
         description={`Invitation nominative pour le ${EVENT.dateLabel}. Entrée gratuite.`}
-      />
+      >
+        <CtaButton source="page-inscription">Ouvrir le formulaire →</CtaButton>
+      </PageHero>
 
       <PageShell>
-        <div className="grid items-start gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-          <Reveal>
-            <aside className="space-y-4 lg:sticky lg:top-28">
-              <Panel>
+        <div className="grid items-stretch gap-4 md:grid-cols-2">
+          <Reveal className="h-full">
+            <Panel className="flex h-full flex-col justify-between bg-white">
+              <div>
                 <SectionLabel>Infos pratiques</SectionLabel>
                 <dl className="mt-4 space-y-4 text-sm">
                   <div>
@@ -53,16 +59,17 @@ export default function InscriptionPage() {
                     <dd className="text-saem-night/70">{EVENT.audience}</dd>
                   </div>
                 </dl>
-                <p className="mt-5 text-xs leading-relaxed text-saem-night/50">
-                  {EVENT.venueNote}
-                </p>
-              </Panel>
-
-              <Panel className="bg-saem-cream/70">
-                <p className="font-display text-lg font-bold text-saem-night">
-                  Pourquoi s&apos;inscrire ?
-                </p>
-                <ul className="mt-3 space-y-2 text-sm text-saem-night/70">
+              </div>
+              <p className="mt-6 text-xs leading-relaxed text-saem-night/50">
+                {EVENT.venueNote}
+              </p>
+            </Panel>
+          </Reveal>
+          <Reveal delay={1} className="h-full">
+            <Panel className="flex h-full flex-col justify-between bg-saem-night text-white">
+              <div>
+                <SectionLabel tone="yellow">Pourquoi s&apos;inscrire ?</SectionLabel>
+                <ul className="mt-4 space-y-3 text-sm text-white/75">
                   <li className="flex items-center gap-3">
                     <span className="size-1.5 rounded-full bg-saem-coral" />
                     Accès prioritaire à l&apos;entrée
@@ -76,19 +83,10 @@ export default function InscriptionPage() {
                     Rappels programme &amp; conférences
                   </li>
                 </ul>
-              </Panel>
-            </aside>
-          </Reveal>
-
-          <Reveal delay={1}>
-            <Panel>
-              <h2 className="font-display text-2xl font-extrabold text-saem-night">
-                Formulaire d&apos;inscription
-              </h2>
-              <p className="mt-2 mb-6 text-sm text-saem-night/60">
-                Une adresse e-mail unique par participant.
-              </p>
-              <RegistrationForm source="page-inscription" />
+              </div>
+              <div className="mt-8">
+                <CtaButton source="page-inscription-cta" />
+              </div>
             </Panel>
           </Reveal>
         </div>

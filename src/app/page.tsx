@@ -2,7 +2,6 @@ import Link from "next/link";
 import { CtaButton } from "@/components/CtaButton";
 import { Countdown } from "@/components/Countdown";
 import { FaqList } from "@/components/FaqList";
-import { RegistrationForm } from "@/components/RegistrationForm";
 import { Reveal } from "@/components/Reveal";
 import { PageShell, Panel, SectionLabel, SectionTitle } from "@/components/ui";
 import { CONFERENCES, EVENT, EXHIBITORS, FACULTIES_ASTERISK } from "@/lib/event";
@@ -248,7 +247,7 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 text-white/60">{EVENT.dateLabel}</p>
             <div className="mt-6">
-              <CtaButton size="lg" />
+              <CtaButton size="lg" source="countdown" />
             </div>
           </Reveal>
           <Reveal delay={1}>
@@ -257,45 +256,60 @@ export default function HomePage() {
         </div>
       </section>
 
-      <PageShell id="inscription" className="scroll-mt-24">
-        <div className="grid items-start gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <Reveal>
-            <div className="lg:sticky lg:top-28">
-              <SectionLabel>Inscription</SectionLabel>
-              <SectionTitle>
-                60 secondes
-                <br />
-                <span className="text-saem-turquoise">pour s&apos;inscrire</span>
-              </SectionTitle>
-              <p className="mt-4 text-saem-night/70">
-                Invitation nominative pour le {EVENT.dateShort}. Accompagnants
-                bienvenus.
-              </p>
-              <ul className="mt-6 space-y-3 text-sm font-semibold text-saem-night/75">
-                {["Gratuit", "Confirmation e-mail", "Accès conférences inclus"].map(
-                  (t) => (
-                    <li key={t} className="flex items-center gap-3">
-                      <span className="size-1.5 rounded-full bg-saem-coral" />
-                      {t}
-                    </li>
-                  ),
-                )}
-              </ul>
-            </div>
-          </Reveal>
-          <Reveal delay={1}>
-            <Panel>
-              <RegistrationForm source="accueil" />
-            </Panel>
-          </Reveal>
-        </div>
-      </PageShell>
-
       <section className="border-t border-saem-night/5 bg-white py-14 sm:py-16">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="grid items-stretch gap-4 md:grid-cols-2">
+            <Reveal className="h-full">
+              <Panel className="flex h-full flex-col justify-between bg-saem-cream">
+                <div>
+                  <SectionLabel>Inscription</SectionLabel>
+                  <SectionTitle>
+                    60 secondes
+                    <br />
+                    <span className="text-saem-turquoise">pour s&apos;inscrire</span>
+                  </SectionTitle>
+                  <p className="mt-4 text-saem-night/70">
+                    Invitation nominative pour le {EVENT.dateShort}. Accompagnants
+                    bienvenus.
+                  </p>
+                </div>
+                <ul className="mt-6 space-y-3 text-sm font-semibold text-saem-night/75">
+                  {["Gratuit", "Confirmation e-mail", "Accès conférences inclus"].map(
+                    (t) => (
+                      <li key={t} className="flex items-center gap-3">
+                        <span className="size-1.5 rounded-full bg-saem-coral" />
+                        {t}
+                      </li>
+                    ),
+                  )}
+                </ul>
+              </Panel>
+            </Reveal>
+            <Reveal delay={1} className="h-full">
+              <Panel className="flex h-full flex-col items-start justify-between bg-saem-night text-white">
+                <div>
+                  <SectionLabel tone="yellow">C&apos;est gratuit</SectionLabel>
+                  <h2 className="mt-3 font-display text-3xl font-extrabold sm:text-4xl">
+                    Réserve ta place maintenant
+                  </h2>
+                  <p className="mt-3 text-white/70">
+                    Le formulaire s&apos;ouvre en un clic. Confirmation par e-mail.
+                  </p>
+                </div>
+                <div className="mt-8">
+                  <CtaButton size="lg" source="accueil-cta" />
+                </div>
+              </Panel>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-saem-night/5 bg-saem-cream py-14 sm:py-16">
         <div className="mx-auto max-w-3xl px-5 sm:px-8">
           <Reveal>
-            <SectionLabel tone="turquoise">FAQ</SectionLabel>
-            <SectionTitle className="!mt-3">Tout ce que tu veux savoir</SectionTitle>
+            <SectionLabel>FAQ</SectionLabel>
+            <SectionTitle>Tout ce que tu veux savoir</SectionTitle>
           </Reveal>
           <div className="mt-8">
             <FaqList />

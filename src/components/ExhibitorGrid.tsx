@@ -7,10 +7,6 @@ function initials(name: string) {
   return (parts[0][0] + parts[1][0]).toUpperCase();
 }
 
-function displayName(name: string) {
-  return name.replace(/^Étudiants — /, "Étudiants\n");
-}
-
 type Props = {
   items: Exhibitor[];
 };

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CtaButton } from "@/components/CtaButton";
 import { Countdown } from "@/components/Countdown";
@@ -9,18 +8,7 @@ import { CONFERENCES, EVENT, EXHIBITORS } from "@/lib/event";
 export default function HomePage() {
   return (
     <>
-      {/* Hero — full-bleed brand + photo plane */}
-      <section className="relative isolate min-h-[100svh] overflow-hidden">
-        <Image
-          src="/hero.jpg"
-          alt=""
-          fill
-          priority
-          className="object-cover object-[28%_18%]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-saem-turquoise/92 via-saem-turquoise/88 to-saem-turquoise-deep/90" />
-        <div className="noise-overlay absolute inset-0" aria-hidden />
+      <section className="relative isolate min-h-[100svh] overflow-hidden hero-mesh noise-overlay">
         <div
           className="pointer-events-none absolute -right-24 -top-24 size-[28rem] rounded-full border border-white/20 sm:size-[36rem]"
           aria-hidden
@@ -125,19 +113,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Exposants + Conférences teasers */}
       <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-2">
-          <article>
-            <div className="relative mb-6 overflow-hidden rounded-saem">
-              <Image
-                src="/expo.jpg"
-                alt="Stands exposants du salon"
-                width={800}
-                height={500}
-                className="h-52 w-full object-cover sm:h-64"
-              />
-            </div>
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-2">
+          <article className="border-t-4 border-saem-coral pt-6">
             <p className="text-xs font-bold tracking-[0.22em] text-saem-coral uppercase">
               Les exposants
             </p>
@@ -156,16 +134,7 @@ export default function HomePage() {
             </Link>
           </article>
 
-          <article>
-            <div className="relative mb-6 overflow-hidden rounded-saem">
-              <Image
-                src="/conf.jpg"
-                alt="Conférences du salon"
-                width={800}
-                height={500}
-                className="h-52 w-full object-cover sm:h-64"
-              />
-            </div>
+          <article className="border-t-4 border-saem-turquoise pt-6">
             <p className="text-xs font-bold tracking-[0.22em] text-saem-coral uppercase">
               Les conférences
             </p>

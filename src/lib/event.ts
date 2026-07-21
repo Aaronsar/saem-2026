@@ -164,6 +164,15 @@ export const CONFERENCES: Conference[] = [
       "Retours d'étudiants sur les campus franciliens. Les facultés ne sont pas représentées officiellement.",
   },
   {
+    id: "c3b",
+    time: "15h30",
+    title: "PASS, LAS & réforme : ce qu'il faut savoir",
+    speaker: "Étudiants & intervenants",
+    room: "Amphithéâtre B",
+    description:
+      "Seconde session — différences entre parcours, attendus et réalités du numerus apertus.",
+  },
+  {
     id: "c6",
     time: "16h00",
     title: "Médecine à l'étranger : opportunités et vigilance",

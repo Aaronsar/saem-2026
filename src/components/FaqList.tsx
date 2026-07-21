@@ -22,14 +22,17 @@ export function FaqList() {
                 {item.q}
               </span>
               <span
-                className={`flex size-7 shrink-0 items-center justify-center rounded-full text-sm transition ${
+                className={`flex size-7 shrink-0 items-center justify-center rounded-full transition ${
                   isOpen
                     ? "rotate-45 bg-saem-coral text-white"
                     : "bg-saem-cream text-saem-coral"
                 }`}
                 aria-hidden
               >
-                +
+                <span className="relative block h-3 w-3">
+                  <span className="absolute top-1/2 left-0 h-0.5 w-full -translate-y-1/2 rounded-full bg-current" />
+                  <span className="absolute top-0 left-1/2 h-full w-0.5 -translate-x-1/2 rounded-full bg-current" />
+                </span>
               </span>
             </button>
             {isOpen && (

@@ -43,13 +43,7 @@ export default function HomePage() {
         />
 
         <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-14 pt-28 sm:justify-center sm:px-8 sm:pb-20">
-          <div className="animate-fade-up">
-            <span className="inline-flex rounded-pill bg-saem-night/20 px-3 py-1.5 text-xs font-bold tracking-[0.18em] text-saem-yellow uppercase backdrop-blur">
-              {EVENT.dateLabel} · {EVENT.timeLabel}
-            </span>
-          </div>
-
-          <h1 className="animate-fade-up-delay mt-6 max-w-5xl font-display text-[clamp(2.75rem,8.5vw,5.75rem)] leading-[1.12] font-extrabold text-white">
+          <h1 className="animate-fade-up max-w-5xl font-display text-[clamp(2.5rem,7.5vw,5.25rem)] leading-[1.12] font-extrabold text-white">
             Salon des
             <br />
             <span className="mt-1 inline-block rounded-[0.22em] bg-saem-coral px-[0.2em] py-[0.08em]">
@@ -59,8 +53,14 @@ export default function HomePage() {
             de <span className="text-saem-yellow">Médecine</span>
           </h1>
 
-          <p className="animate-fade-up-delay-2 mt-7 max-w-lg text-base leading-relaxed text-white/90 sm:text-lg">
-            {EVENT.tagline}
+          <p className="animate-fade-up-delay mt-6 font-display text-[clamp(1.6rem,4.5vw,2.75rem)] leading-tight font-extrabold text-white">
+            {EVENT.dateLabel}
+          </p>
+          <p className="animate-fade-up-delay mt-2 text-lg font-bold text-saem-yellow sm:text-xl">
+            {EVENT.timeLabel}
+          </p>
+          <p className="animate-fade-up-delay-2 mt-3 text-base font-semibold text-white/85 sm:text-lg">
+            Paris 16<sup>e</sup> · {EVENT.address}
           </p>
 
           <div className="animate-fade-up-delay-2 mt-8 flex flex-wrap items-center gap-3">
@@ -95,7 +95,7 @@ export default function HomePage() {
           <Reveal delay={1} className="h-full">
             <Panel className="flex h-full flex-col justify-between bg-white">
               <div>
-                <SectionLabel>Où</SectionLabel>
+                <SectionLabel>Où ?</SectionLabel>
                 <h2 className="mt-4 font-display text-3xl font-extrabold text-saem-night sm:text-4xl">
                   Paris 16<sup>e</sup>
                 </h2>

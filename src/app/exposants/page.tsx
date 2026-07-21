@@ -11,25 +11,25 @@ export const metadata: Metadata = {
     "Exposants du Salon des Études de Médecine 2026 — prépas, associations et échanges avec des étudiants de facultés d'Île-de-France.",
 };
 
-const categories = ["Facultés*", "Prépa", "Association", "École", "Partenaire"] as const;
+const facultyStudents = EXHIBITORS.filter((e) => e.category === "Facultés*");
+const others = EXHIBITORS.filter((e) => e.category !== "Facultés*");
 
-const categoryLabels: Record<(typeof categories)[number], string> = {
-  "Facultés*": "Facultés*",
-  Prépa: "Prépas",
-  Association: "Associations",
-  École: "Écoles & mobilité",
-  Partenaire: "Partenaires",
+const sectionMeta: Record<string, { label: string; tone: string }> = {
+  Prépa: { label: "Prépas", tone: "text-saem-coral" },
+  Association: { label: "Associations", tone: "text-saem-turquoise" },
+  École: { label: "Écoles & mobilité", tone: "text-saem-yellow" },
+  Partenaire: { label: "Partenaires", tone: "text-saem-coral" },
 };
 
-const accents = [
-  "bg-saem-coral text-white",
-  "bg-saem-turquoise text-white",
-  "bg-saem-night text-white",
-  "bg-white text-saem-night",
-  "bg-saem-yellow text-saem-night",
-];
-
 export default function ExposantsPage() {
+  const grouped = (["Prépa", "Association", "École", "Partenaire"] as const)
+    .map((cat) => ({
+      cat,
+      items: others.filter((e) => e.category === cat),
+      ...sectionMeta[cat],
+    }))
+    .filter((g) => g.items.length > 0);
+
   return (
     <>
       <PageHero
@@ -46,72 +46,69 @@ export default function ExposantsPage() {
         <CtaButton />
       </PageHero>
 
-      <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-16">
+      <section className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
         <Reveal>
-          <aside className="mb-12 overflow-hidden rounded-[1.5rem] bg-saem-night p-6 text-white sm:p-8">
-            <p className="font-display text-2xl font-extrabold">
+          <div className="border-l-2 border-saem-coral pl-5">
+            <p className="text-xs font-bold tracking-[0.2em] text-saem-coral uppercase">
               Facultés<span className="text-saem-coral">*</span>
             </p>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70">
+            <p className="mt-3 text-sm leading-relaxed text-saem-night/70">
               {FACULTIES_ASTERISK}
             </p>
-          </aside>
+            <ul className="mt-5 flex flex-wrap gap-x-2 gap-y-2">
+              {facultyStudents.map((item) => (
+                <li
+                  key={item.id}
+                  className="rounded-pill bg-white px-3.5 py-1.5 text-sm font-semibold text-saem-night"
+                >
+                  {item.name.replace(/^Étudiants — /, "")}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-xs text-saem-night/45">
+              Stands tenus par des étudiants — pas de représentation officielle
+              d&apos;université.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="space-y-14">
-          {categories.map((category) => {
-            const items = EXHIBITORS.filter((e) => e.category === category);
-            if (items.length === 0) return null;
-            return (
-              <div key={category}>
-                <Reveal>
-                  <h2 className="mb-2 font-display text-2xl font-extrabold text-saem-night sm:text-3xl">
-                    {categoryLabels[category]}
-                  </h2>
-                  {category === "Facultés*" && (
-                    <p className="mb-6 max-w-2xl text-sm text-saem-night/60">
-                      Stands tenus par des étudiants — pas de représentation
-                      officielle d&apos;université.
+        <div className="mt-14 space-y-12">
+          {grouped.map((group) => (
+            <Reveal key={group.cat}>
+              <h2
+                className={`text-xs font-bold tracking-[0.22em] uppercase ${group.tone === "text-saem-yellow" ? "text-saem-turquoise-deep" : group.tone}`}
+              >
+                {group.label}
+              </h2>
+              <ul className="mt-4 divide-y divide-saem-night/10 border-t border-saem-night/10">
+                {group.items.map((item) => (
+                  <li
+                    key={item.id}
+                    className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+                  >
+                    <div>
+                      <h3 className="font-display text-xl font-extrabold text-saem-night">
+                        {item.name}
+                      </h3>
+                      <p className="mt-1 text-sm text-saem-night/60">
+                        {item.description}
+                      </p>
+                    </div>
+                    <p className="shrink-0 text-xs font-bold tracking-wide text-saem-night/40 uppercase">
+                      {item.city}
                     </p>
-                  )}
-                </Reveal>
-                <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {items.map((exhibitor, i) => (
-                    <Reveal key={exhibitor.id} delay={(i % 3) as 0 | 1 | 2 | 3}>
-                      <li
-                        className={`panel-shift flex h-full flex-col justify-between rounded-[1.35rem] p-5 sm:p-6 ${
-                          accents[i % accents.length]
-                        }`}
-                      >
-                        <div>
-                          <p className="text-[0.65rem] font-bold tracking-[0.18em] uppercase opacity-70">
-                            {exhibitor.city}
-                          </p>
-                          <h3 className="mt-2 font-display text-xl font-extrabold">
-                            {exhibitor.name}
-                          </h3>
-                        </div>
-                        <p className="mt-4 text-sm leading-relaxed opacity-85">
-                          {exhibitor.description}
-                        </p>
-                      </li>
-                    </Reveal>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          ))}
         </div>
-
-        <p className="mt-12 text-xs leading-relaxed text-saem-night/50">
-          <span className="font-semibold text-saem-coral">*</span> {FACULTIES_ASTERISK}
-        </p>
       </section>
 
-      <section className="bg-white py-14 sm:py-16">
+      <section className="border-t border-saem-night/5 bg-white py-14 sm:py-16">
         <div className="mx-auto grid max-w-6xl items-start gap-10 px-5 sm:px-8 lg:grid-cols-2">
           <Reveal>
-            <h2 className="font-display text-3xl font-extrabold text-saem-night sm:text-4xl">
+            <h2 className="font-display text-3xl font-extrabold text-saem-night">
               Vous souhaitez exposer ?
             </h2>
             <p className="mt-3 text-saem-night/70">
@@ -125,7 +122,7 @@ export default function ExposantsPage() {
             </a>
           </Reveal>
           <Reveal delay={1}>
-            <div className="rounded-[1.5rem] bg-saem-cream p-5 sm:p-8">
+            <div className="rounded-[1.5rem] border border-saem-night/8 bg-saem-cream/60 p-5 sm:p-8">
               <p className="mb-4 font-display text-xl font-bold text-saem-night">
                 Visiteur ? Inscrivez-vous
               </p>

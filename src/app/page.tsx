@@ -79,7 +79,7 @@ export default function HomePage() {
           <Reveal className="h-full">
             <Panel className="flex h-full flex-col justify-between bg-saem-night text-white">
               <div>
-                <SectionLabel tone="yellow">Quand</SectionLabel>
+                <SectionLabel tone="yellow">Quand ?</SectionLabel>
                 <h2 className="mt-4 font-display text-3xl font-extrabold text-white sm:text-4xl">
                   {EVENT.dateLabel}
                 </h2>

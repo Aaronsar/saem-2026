@@ -43,8 +43,13 @@ export function Panel({
   children: ReactNode;
   className?: string;
 }) {
+  const hasBg = /\bbg-/.test(className);
   return (
-    <div className={`rounded-2xl bg-white p-6 sm:p-8 ${className}`}>{children}</div>
+    <div
+      className={`rounded-2xl p-6 sm:p-8 ${hasBg ? "" : "bg-white"} ${className}`.trim()}
+    >
+      {children}
+    </div>
   );
 }
 

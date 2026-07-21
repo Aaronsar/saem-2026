@@ -76,33 +76,37 @@ export default function HomePage() {
       </section>
 
       <PageShell>
-        <div className="grid gap-4 md:grid-cols-2">
-          <Reveal>
-            <Panel className="relative overflow-hidden bg-saem-night text-white">
-              <SectionLabel tone="yellow">Quand</SectionLabel>
-              <h2 className="mt-4 font-display text-3xl font-extrabold sm:text-4xl">
-                {EVENT.dateLabel}
-              </h2>
-              <p className="mt-2 text-xl font-bold text-saem-turquoise">
-                {EVENT.timeLabel}
-              </p>
-              <p className="mt-5 text-sm text-white/55">
+        <div className="grid items-stretch gap-4 md:grid-cols-2">
+          <Reveal className="h-full">
+            <Panel className="flex h-full flex-col justify-between bg-saem-night text-white">
+              <div>
+                <SectionLabel tone="yellow">Quand</SectionLabel>
+                <h2 className="mt-4 font-display text-3xl font-extrabold text-white sm:text-4xl">
+                  {EVENT.dateLabel}
+                </h2>
+                <p className="mt-2 text-xl font-bold text-saem-turquoise">
+                  {EVENT.timeLabel}
+                </p>
+              </div>
+              <p className="mt-6 text-sm text-white/70">
                 Entrée gratuite · inscription nominative
               </p>
             </Panel>
           </Reveal>
-          <Reveal delay={1}>
-            <Panel>
-              <SectionLabel>Où</SectionLabel>
-              <h2 className="mt-4 font-display text-3xl font-extrabold text-saem-night sm:text-4xl">
-                Paris 16<sup>e</sup>
-              </h2>
-              <p className="mt-2 text-base font-semibold text-saem-night/75">
-                {EVENT.address}
-                <br />
-                {EVENT.city}
-              </p>
-              <p className="mt-5 text-sm text-saem-night/50">{EVENT.venueNote}</p>
+          <Reveal delay={1} className="h-full">
+            <Panel className="flex h-full flex-col justify-between bg-white">
+              <div>
+                <SectionLabel>Où</SectionLabel>
+                <h2 className="mt-4 font-display text-3xl font-extrabold text-saem-night sm:text-4xl">
+                  Paris 16<sup>e</sup>
+                </h2>
+                <p className="mt-2 text-base font-semibold text-saem-night/80">
+                  {EVENT.address}
+                  <br />
+                  {EVENT.city}
+                </p>
+              </div>
+              <p className="mt-6 text-sm text-saem-night/60">{EVENT.venueNote}</p>
             </Panel>
           </Reveal>
         </div>

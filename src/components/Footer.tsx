@@ -39,6 +39,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/partenaires" className="hover:text-white">
+                Partenaires
+              </Link>
+            </li>
+            <li>
               <button
                 type="button"
                 onClick={() => openModal("footer")}

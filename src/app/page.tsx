@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CtaButton } from "@/components/CtaButton";
 import { Countdown } from "@/components/Countdown";
 import { FaqList } from "@/components/FaqList";
+import { FeaturePoster, FeatureSplit } from "@/components/FeatureSplit";
 import { Reveal } from "@/components/Reveal";
 import { PageShell, Panel, SectionLabel, SectionTitle } from "@/components/ui";
 import { CONFERENCES, EVENT, EXHIBITORS, FACULTIES_ASTERISK } from "@/lib/event";
@@ -193,50 +194,69 @@ export default function HomePage() {
         </div>
       </section>
 
-      <PageShell>
-        <div className="grid gap-4 lg:grid-cols-2">
+      <section className="bg-[#ececec] py-14 sm:py-16">
+        <div className="mx-auto max-w-6xl space-y-6 px-5 sm:px-8">
           <Reveal>
-            <Link
+            <FeatureSplit
+              eyebrow="Exposants"
+              title="Découvrez les exposants du salon"
+              description={
+                <>
+                  <p>
+                    Prépare ta visite : stands d&apos;étudiants de facultés
+                    <span className="text-saem-coral">*</span>, prépas, écoles
+                    européennes et associations.
+                  </p>
+                  <p>
+                    <strong>{EXHIBITORS.length} acteurs</strong> déjà annoncés —
+                    dont Link Campus University et Universidad Europea.
+                  </p>
+                </>
+              }
               href="/exposants"
-              className="group block rounded-2xl bg-saem-night p-8 text-white transition hover:bg-saem-night/95 sm:p-10"
-            >
-              <SectionLabel tone="yellow">Exposants</SectionLabel>
-              <h2 className="mt-3 font-display text-3xl font-extrabold sm:text-4xl">
-                Facultés<span className="text-saem-yellow">*</span>, prépas &amp; Europe
-              </h2>
-              <p className="mt-4 max-w-md text-white/70">
-                {EXHIBITORS.length} acteurs annoncés — Link Campus University,
-                Universidad Europea, et plus.
-              </p>
-              <span className="mt-8 inline-flex font-bold text-saem-turquoise transition group-hover:translate-x-1">
-                Voir la liste →
-              </span>
-            </Link>
+              cta="Voir les exposants"
+              tone="turquoise"
+              visual={
+                <FeaturePoster
+                  line1="Salon 2026"
+                  line2="Exposants"
+                  line3="Liste complète →"
+                />
+              }
+            />
           </Reveal>
+
           <Reveal delay={1}>
-            <div className="grid h-full grid-cols-2 gap-3">
-              {[
-                { value: `${CONFERENCES.length}`, label: "Conférences" },
-                { value: `${EXHIBITORS.length}+`, label: "Exposants" },
-                { value: "1", label: "Journée" },
-                { value: "0€", label: "Entrée" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="flex flex-col justify-end rounded-2xl bg-white p-5 sm:p-6"
-                >
-                  <p className="font-display text-3xl font-extrabold text-saem-coral sm:text-4xl">
-                    {stat.value}
+            <FeatureSplit
+              eyebrow="Partenaires"
+              title="Les partenaires du Salon des Études de Médecine"
+              description={
+                <>
+                  <p>
+                    Médias et partenaires qui accompagnent l&apos;édition 2026 —
+                    dont <strong>Hermione Médecine</strong>.
                   </p>
-                  <p className="mt-1 text-xs font-bold tracking-wide text-saem-night/45 uppercase">
-                    {stat.label}
+                  <p>
+                    Vous souhaitez associer votre marque au salon ? Contactez-nous
+                    ou consultez la page partenaires.
                   </p>
-                </div>
-              ))}
-            </div>
+                </>
+              }
+              href="/partenaires"
+              cta="Voir les partenaires"
+              tone="night"
+              reverse
+              visual={
+                <FeaturePoster
+                  line1="Édition 2026"
+                  line2="Partenaires"
+                  line3="Hermione Médecine & plus"
+                />
+              }
+            />
           </Reveal>
         </div>
-      </PageShell>
+      </section>
 
       <section className="bg-saem-turquoise py-16 text-white sm:py-20">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">

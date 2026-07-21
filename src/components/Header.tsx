@@ -10,6 +10,7 @@ const NAV = [
   { href: "/", label: "Accueil" },
   { href: "/exposants", label: "Exposants" },
   { href: "/conferences", label: "Conférences" },
+  { href: "/partenaires", label: "Partenaires" },
 ] as const;
 
 export function Header() {

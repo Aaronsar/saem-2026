@@ -46,8 +46,7 @@ export default function HomePage() {
         <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-14 pt-28 sm:justify-center sm:px-8 sm:pb-20">
           <div className="flex items-center gap-3 animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-pill bg-saem-night/25 px-3 py-1.5 text-xs font-bold tracking-[0.18em] text-saem-yellow uppercase backdrop-blur">
-              <span className="size-1.5 rounded-full bg-saem-yellow animate-ticker" />
-              Live · {EVENT.dateShort}
+              {EVENT.dateLabel} · {EVENT.timeLabel}
             </span>
           </div>
 

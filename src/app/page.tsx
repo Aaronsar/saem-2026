@@ -331,7 +331,7 @@ export default function HomePage() {
               <h2 className="mt-3 font-display text-4xl font-extrabold text-saem-night sm:text-5xl">
                 60 secondes
                 <br />
-                <span className="text-saem-turquoise">pour réserver</span>
+                <span className="text-saem-turquoise">pour s&apos;inscrire</span>
               </h2>
               <p className="mt-4 text-saem-night/70">
                 Invitation nominative pour le {EVENT.dateShort}. Accompagnants

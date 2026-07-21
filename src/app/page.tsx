@@ -3,7 +3,7 @@ import { CtaButton } from "@/components/CtaButton";
 import { Countdown } from "@/components/Countdown";
 import { FaqList } from "@/components/FaqList";
 import { RegistrationForm } from "@/components/RegistrationForm";
-import { CONFERENCES, EVENT, EXHIBITORS } from "@/lib/event";
+import { CONFERENCES, EVENT, EXHIBITORS, FACULTIES_ASTERISK } from "@/lib/event";
 
 export default function HomePage() {
   return (
@@ -88,9 +88,10 @@ export default function HomePage() {
             Une journée pour construire ton projet médecine
           </h2>
           <p className="mt-4 text-base leading-relaxed text-saem-night/70 sm:text-lg">
-            Lycéen, étudiant ou parent : le {EVENT.name} rassemble facultés,
-            prépas et associations pour t&apos;aider à choisir ta voie — PASS,
-            LAS, études en France ou à l&apos;étranger.
+            Lycéen, étudiant ou parent : le {EVENT.name} réunit prépas,
+            associations et étudiants de facultés
+            <span className="text-saem-coral">*</span> pour t&apos;aider à
+            choisir ta voie — PASS, LAS, études en France ou à l&apos;étranger.
           </p>
         </div>
 
@@ -111,6 +112,10 @@ export default function HomePage() {
         <div className="mt-10">
           <CtaButton />
         </div>
+        <p className="mt-8 max-w-3xl text-xs leading-relaxed text-saem-night/50">
+          <span className="font-semibold text-saem-coral">*</span>{" "}
+          {FACULTIES_ASTERISK}
+        </p>
       </section>
 
       <section className="bg-white py-16 sm:py-20">
@@ -120,11 +125,12 @@ export default function HomePage() {
               Les exposants
             </p>
             <h2 className="mt-2 font-display text-2xl font-extrabold text-saem-night sm:text-3xl">
-              Facultés, prépas & associations
+              Facultés<span className="text-saem-coral">*</span>, prépas &amp; associations
             </h2>
             <p className="mt-3 text-saem-night/70">
-              Prépare ta visite : {EXHIBITORS.length} exposants déjà annoncés.
-              La liste sera enrichie jusqu&apos;au jour J.
+              Prépare ta visite : stands d&apos;étudiants de fac
+              <span className="text-saem-coral">*</span>, prépas et associations.
+              Liste mise à jour jusqu&apos;au jour J.
             </p>
             <Link
               href="/exposants"

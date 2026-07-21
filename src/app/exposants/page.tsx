@@ -2,31 +2,47 @@ import type { Metadata } from "next";
 import { CtaButton } from "@/components/CtaButton";
 import { PageHero } from "@/components/PageHero";
 import { RegistrationForm } from "@/components/RegistrationForm";
-import { EVENT, EXHIBITORS } from "@/lib/event";
+import { EVENT, EXHIBITORS, FACULTIES_ASTERISK } from "@/lib/event";
 
 export const metadata: Metadata = {
   title: "Exposants",
   description:
-    "Liste des exposants du Salon des Études de Médecine 2026 — facultés, prépas et associations.",
+    "Exposants du Salon des Études de Médecine 2026 — prépas, associations et échanges avec des étudiants de facultés d'Île-de-France.",
 };
 
-const categories = ["Faculté", "Prépa", "Association", "École", "Partenaire"] as const;
+const categories = ["Facultés*", "Prépa", "Association", "École", "Partenaire"] as const;
+
+const categoryLabels: Record<(typeof categories)[number], string> = {
+  "Facultés*": "Facultés*",
+  Prépa: "Prépas",
+  Association: "Associations",
+  École: "Écoles & mobilité",
+  Partenaire: "Partenaires",
+};
 
 export default function ExposantsPage() {
   return (
     <>
       <PageHero
         eyebrow="Exposants"
-        title="Rencontre les acteurs de ton orientation"
-        description="Facultés de médecine, prépas et associations : prépare ton parcours de visite avant le jour J."
+        title="Qui rencontreras-tu sur place ?"
+        description="Prépas, associations et stands d'étudiants de facultés* — pour préparer ton orientation médecine."
       >
         <CtaButton />
       </PageHero>
 
       <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-16">
+        <aside className="mb-10 rounded-saem border border-saem-coral/25 bg-saem-coral/5 p-5 sm:p-6">
+          <p className="text-sm font-bold text-saem-night">
+            Facultés<span className="text-saem-coral">*</span>
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-saem-night/75">
+            {FACULTIES_ASTERISK}
+          </p>
+        </aside>
+
         <p className="mb-8 text-sm text-saem-night/60">
-          {EXHIBITORS.length} exposants annoncés · liste mise à jour régulièrement
-          jusqu&apos;au {EVENT.dateShort}.
+          Liste indicative · mise à jour régulièrement jusqu&apos;au {EVENT.dateShort}.
         </p>
 
         <div className="space-y-12">
@@ -37,16 +53,14 @@ export default function ExposantsPage() {
               <div key={category}>
                 <h2 className="mb-4 font-display text-xl font-extrabold text-saem-night sm:text-2xl">
                   <span className="mr-2 inline-block h-3 w-3 rounded-full bg-saem-coral align-middle" />
-                  {category === "Faculté"
-                    ? "Facultés"
-                    : category === "Prépa"
-                      ? "Prépas"
-                      : category === "Association"
-                        ? "Associations"
-                        : category === "École"
-                          ? "Écoles"
-                          : "Partenaires"}
+                  {categoryLabels[category]}
                 </h2>
+                {category === "Facultés*" && (
+                  <p className="mb-4 max-w-3xl text-sm text-saem-night/60">
+                    Ces stands sont tenus par des étudiants. Ils ne représentent pas
+                    officiellement leur université.
+                  </p>
+                )}
                 <ul className="grid gap-4 sm:grid-cols-2">
                   {items.map((exhibitor) => (
                     <li
@@ -71,17 +85,21 @@ export default function ExposantsPage() {
             );
           })}
         </div>
+
+        <p className="mt-10 text-xs leading-relaxed text-saem-night/50">
+          <span className="font-semibold text-saem-coral">*</span> {FACULTIES_ASTERISK}
+        </p>
       </section>
 
       <section className="border-t border-saem-night/5 bg-white py-14 sm:py-16">
         <div className="mx-auto grid max-w-6xl items-start gap-10 px-5 sm:px-8 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-3xl font-extrabold text-saem-night">
-              Vous êtes un établissement ?
+              Vous souhaitez exposer ?
             </h2>
             <p className="mt-3 text-saem-night/70">
-              Rejoignez les exposants du salon pour rencontrer des lycéens motivés
-              par les études de médecine. Inscrivez-vous ou contactez-nous.
+              Prépas, associations ou organismes d&apos;orientation : contactez-nous
+              pour rejoindre le salon.
             </p>
             <a
               href={`mailto:${EVENT.email}?subject=Devenir%20exposant%20SAEM%202026`}

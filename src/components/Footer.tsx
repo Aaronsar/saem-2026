@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EVENT } from "@/lib/event";
+import { EVENT, FACULTIES_ASTERISK } from "@/lib/event";
 import { Logo } from "./Logo";
 
 export function Footer() {
@@ -62,9 +62,14 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-5 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-          <p>© {new Date().getFullYear()} {EVENT.name}. Tous droits réservés.</p>
-          <p>Entrée gratuite sur inscription.</p>
+        <div className="mx-auto max-w-6xl space-y-3 px-5 py-5 text-xs text-white/45 sm:px-8">
+          <p>
+            <span className="text-saem-coral">*</span> {FACULTIES_ASTERISK}
+          </p>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p>© {new Date().getFullYear()} {EVENT.name}. Tous droits réservés.</p>
+            <p>Entrée gratuite sur inscription.</p>
+          </div>
         </div>
       </div>
     </footer>

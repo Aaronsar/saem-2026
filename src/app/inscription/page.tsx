@@ -13,8 +13,14 @@ export default function InscriptionPage() {
     <>
       <PageHero
         eyebrow="Inscription gratuite"
-        title="Je m'inscris au salon"
-        description={`Réserve ta place pour le ${EVENT.dateLabel}. Invitation nominative envoyée par e-mail.`}
+        title={
+          <>
+            Réserve
+            <br />
+            ta <span className="rounded-[0.2em] bg-saem-coral px-[0.15em]">place</span>
+          </>
+        }
+        description={`Invitation nominative pour le ${EVENT.dateLabel}. Entrée gratuite.`}
       />
 
       <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-16">

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 
 const NAV = [
@@ -15,13 +15,31 @@ const NAV = [
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled || open
+          ? "border-b border-white/10 bg-saem-turquoise-deep/90 backdrop-blur-xl"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <Logo variant="light" />
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-0.5 md:flex">
           {NAV.map((item) => {
             const active = pathname === item.href;
             return (
@@ -30,7 +48,7 @@ export function Header() {
                 href={item.href}
                 className={`rounded-pill px-4 py-2 text-sm font-semibold tracking-wide transition ${
                   active
-                    ? "bg-white/20 text-white"
+                    ? "bg-white text-saem-turquoise-deep"
                     : "text-white/85 hover:bg-white/10 hover:text-white"
                 }`}
               >
@@ -40,7 +58,7 @@ export function Header() {
           })}
           <Link
             href="/inscription"
-            className="ml-2 inline-flex items-center rounded-pill bg-saem-coral px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-saem-coral-deep"
+            className="ml-2 inline-flex items-center rounded-pill bg-saem-coral px-5 py-2.5 text-sm font-bold text-white transition hover:scale-[1.03] hover:bg-saem-coral-deep"
           >
             Je m&apos;inscris →
           </Link>
@@ -53,7 +71,6 @@ export function Header() {
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
-          <span className="sr-only">Menu</span>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
             {open ? (
               <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -65,13 +82,12 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-white/15 bg-saem-turquoise-deep/95 px-5 py-4 backdrop-blur md:hidden">
+        <div className="border-t border-white/10 bg-saem-turquoise-deep/95 px-5 py-4 backdrop-blur md:hidden">
           <nav className="flex flex-col gap-1">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setOpen(false)}
                 className="rounded-xl px-4 py-3 text-base font-semibold text-white hover:bg-white/10"
               >
                 {item.label}

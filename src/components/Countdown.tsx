@@ -8,23 +8,19 @@ type Remaining = {
   hours: number;
   minutes: number;
   seconds: number;
-  done: boolean;
 };
 
 function getRemaining(): Remaining {
-  const target = new Date(EVENT.dateISO).getTime();
-  const diff = target - Date.now();
-  if (diff <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0, done: true };
-  }
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-  return { days, hours, minutes, seconds, done: false };
+  const diff = Math.max(0, new Date(EVENT.dateISO).getTime() - Date.now());
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  };
 }
 
-export function Countdown() {
+export function Countdown({ dark = false }: { dark?: boolean }) {
   const [remaining, setRemaining] = useState<Remaining | null>(null);
 
   useEffect(() => {
@@ -33,33 +29,32 @@ export function Countdown() {
     return () => clearInterval(id);
   }, []);
 
-  const items = remaining
-    ? [
-        { label: "Jours", value: remaining.days },
-        { label: "Heures", value: remaining.hours },
-        { label: "Minutes", value: remaining.minutes },
-        { label: "Secondes", value: remaining.seconds },
-      ]
-    : [
-        { label: "Jours", value: "—" },
-        { label: "Heures", value: "—" },
-        { label: "Minutes", value: "—" },
-        { label: "Secondes", value: "—" },
-      ];
+  const items = [
+    { label: "Jours", value: remaining?.days },
+    { label: "Heures", value: remaining?.hours },
+    { label: "Min", value: remaining?.minutes },
+    { label: "Sec", value: remaining?.seconds },
+  ];
 
   return (
-    <div className="grid grid-cols-4 gap-3 sm:gap-4">
+    <div className="grid grid-cols-4 gap-2 sm:gap-3">
       {items.map((item) => (
         <div
           key={item.label}
-          className="rounded-saem bg-white/10 px-2 py-4 text-center backdrop-blur sm:px-4"
+          className={`relative overflow-hidden rounded-2xl px-2 py-4 text-center sm:px-3 sm:py-5 ${
+            dark
+              ? "bg-white/10 text-white"
+              : "bg-saem-night text-white"
+          }`}
         >
-          <p className="font-display text-2xl font-extrabold text-white tabular-nums sm:text-4xl">
-            {typeof item.value === "number"
-              ? String(item.value).padStart(2, "0")
-              : item.value}
+          <p className="font-display text-2xl font-extrabold tabular-nums sm:text-4xl">
+            {item.value == null ? "—" : String(item.value).padStart(2, "0")}
           </p>
-          <p className="mt-1 text-[0.65rem] font-semibold tracking-[0.18em] text-white/70 uppercase sm:text-xs">
+          <p
+            className={`mt-1 text-[0.6rem] font-bold tracking-[0.16em] uppercase sm:text-xs ${
+              dark ? "text-white/60" : "text-saem-yellow"
+            }`}
+          >
             {item.label}
           </p>
         </div>

@@ -32,7 +32,7 @@ export function CtaButton({
   return (
     <Link
       href={href}
-      className={`inline-flex items-center justify-center rounded-pill font-bold transition ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`inline-flex items-center justify-center rounded-pill font-bold transition hover:scale-[1.03] active:scale-[0.98] ${variants[variant]} ${sizes[size]} ${className}`}
     >
       {children}
     </Link>

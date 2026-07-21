@@ -178,7 +178,7 @@ export const CONFERENCES: Conference[] = [
 export const FAQ = [
   {
     q: "Comment m'inscrire au salon ?",
-    a: "Cliquez sur « Je m'inscris » n'importe où sur le site, remplissez le formulaire et validez. Vous recevrez une confirmation par e-mail. L'entrée est gratuite et nominative.",
+    a: "Cliquez sur « Je m'inscris » n'importe où sur le site pour ouvrir le formulaire, puis validez. Vous recevrez une confirmation par e-mail. L'entrée est gratuite et nominative.",
   },
   {
     q: "Les facultés de médecine seront-elles présentes ?",

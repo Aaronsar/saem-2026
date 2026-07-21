@@ -4,18 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
+import { useRegistrationModal } from "./RegistrationModalContext";
 
 const NAV = [
   { href: "/", label: "Accueil" },
   { href: "/exposants", label: "Exposants" },
   { href: "/conferences", label: "Conférences" },
-  { href: "/inscription", label: "Inscription" },
 ] as const;
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { openModal } = useRegistrationModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -56,12 +57,13 @@ export function Header() {
               </Link>
             );
           })}
-          <Link
-            href="/inscription"
+          <button
+            type="button"
+            onClick={() => openModal("header")}
             className="ml-2 inline-flex items-center rounded-pill bg-saem-coral px-5 py-2.5 text-sm font-bold text-white transition hover:scale-[1.03] hover:bg-saem-coral-deep"
           >
             Je m&apos;inscris →
-          </Link>
+          </button>
         </nav>
 
         <button
@@ -93,6 +95,16 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openModal("header-mobile");
+              }}
+              className="mt-2 rounded-pill bg-saem-coral px-4 py-3 text-left text-base font-bold text-white"
+            >
+              Je m&apos;inscris →
+            </button>
           </nav>
         </div>
       )}

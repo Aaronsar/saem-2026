@@ -1,8 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { EVENT, FACULTIES_ASTERISK } from "@/lib/event";
 import { Logo } from "./Logo";
+import { useRegistrationModal } from "./RegistrationModalContext";
 
 export function Footer() {
+  const { openModal } = useRegistrationModal();
+
   return (
     <footer className="bg-saem-night text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1.2fr_1fr_1fr]">
@@ -34,9 +39,13 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/inscription" className="hover:text-white">
+              <button
+                type="button"
+                onClick={() => openModal("footer")}
+                className="hover:text-white"
+              >
                 Inscription
-              </Link>
+              </button>
             </li>
           </ul>
         </div>
@@ -67,7 +76,9 @@ export function Footer() {
             <span className="text-saem-coral">*</span> {FACULTIES_ASTERISK}
           </p>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} {EVENT.name}. Tous droits réservés.</p>
+            <p>
+              © {new Date().getFullYear()} {EVENT.name}. Tous droits réservés.
+            </p>
             <p>Entrée gratuite sur inscription.</p>
           </div>
         </div>

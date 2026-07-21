@@ -210,31 +210,34 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="mask-fade-x snap-x-mandatory flex gap-4 overflow-x-auto px-5 pb-4 sm:px-8">
-          {CONFERENCES.map((conf, i) => (
-            <article
-              key={conf.id}
-              className="snap-start w-[min(85vw,22rem)] shrink-0 rounded-[1.5rem] bg-white p-6 transition hover:-translate-y-1"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <time className="rounded-pill bg-saem-turquoise px-3 py-1 text-sm font-bold text-white">
-                  {conf.time}
-                </time>
-                <span className="text-xs font-bold text-saem-night/35">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <h3 className="mt-4 font-display text-xl font-extrabold text-saem-night">
-                {conf.title}
-              </h3>
-              <p className="mt-2 text-sm text-saem-coral font-semibold">
-                {conf.speaker}
-              </p>
-              <p className="mt-2 text-sm text-saem-night/60 line-clamp-3">
-                {conf.description}
-              </p>
-            </article>
-          ))}
+        <div className="mx-auto max-w-6xl">
+          <div className="snap-x-mandatory flex gap-4 overflow-x-auto px-5 pb-4 sm:px-8">
+            {CONFERENCES.map((conf, i) => (
+              <article
+                key={conf.id}
+                className="snap-start w-[min(78vw,20rem)] shrink-0 rounded-[1.5rem] bg-white p-6 transition hover:-translate-y-1 sm:w-[22rem]"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <time className="rounded-pill bg-saem-turquoise px-3 py-1 text-sm font-bold text-white">
+                    {conf.time}
+                  </time>
+                  <span className="text-xs font-bold text-saem-night/35">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-display text-xl font-extrabold text-saem-night">
+                  {conf.title}
+                </h3>
+                <p className="mt-2 text-sm font-semibold text-saem-coral">
+                  {conf.speaker}
+                </p>
+                <p className="mt-2 line-clamp-3 text-sm text-saem-night/60">
+                  {conf.description}
+                </p>
+              </article>
+            ))}
+            <div className="w-1 shrink-0 sm:w-0" aria-hidden />
+          </div>
         </div>
       </section>
 

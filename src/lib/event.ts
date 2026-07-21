@@ -83,11 +83,20 @@ export const EXHIBITORS: Exhibitor[] = [
     description: "Conseils de terrain et orientation par des associations d'étudiants en santé.",
   },
   {
-    id: "medabroad",
-    name: "Études de médecine à l'étranger",
+    id: "link-rome",
+    name: "Link Campus University",
     category: "École",
-    city: "Europe",
-    description: "Programmes internationaux, conditions d'admission et points de vigilance.",
+    city: "Rome",
+    description:
+      "Université basée à Rome — présentation des cursus et échanges sur les études de médecine en Italie.",
+  },
+  {
+    id: "ue-espagne",
+    name: "Universidad Europea",
+    category: "École",
+    city: "Madrid · Málaga · Valence…",
+    description:
+      "Université privée espagnole multi-campus (Madrid, Málaga, Valence et autres) — orientation vers les études de santé en Espagne.",
   },
 ];
 

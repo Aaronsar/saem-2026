@@ -3,6 +3,7 @@ import { CtaButton } from "@/components/CtaButton";
 import { PageHero } from "@/components/PageHero";
 import { RegistrationForm } from "@/components/RegistrationForm";
 import { Reveal } from "@/components/Reveal";
+import { PageShell, Panel, SectionLabel, SectionTitle } from "@/components/ui";
 import { EVENT, EXHIBITORS, FACULTIES_ASTERISK } from "@/lib/event";
 
 export const metadata: Metadata = {
@@ -14,19 +15,19 @@ export const metadata: Metadata = {
 const facultyStudents = EXHIBITORS.filter((e) => e.category === "Facultés*");
 const others = EXHIBITORS.filter((e) => e.category !== "Facultés*");
 
-const sectionMeta: Record<string, { label: string; tone: string }> = {
-  Prépa: { label: "Prépas", tone: "text-saem-coral" },
-  Association: { label: "Associations", tone: "text-saem-turquoise" },
-  École: { label: "Écoles & mobilité", tone: "text-saem-yellow" },
-  Partenaire: { label: "Partenaires", tone: "text-saem-coral" },
+const sectionMeta: Record<string, string> = {
+  Prépa: "Prépas",
+  Association: "Associations",
+  École: "Écoles & mobilité",
+  Partenaire: "Partenaires",
 };
 
 export default function ExposantsPage() {
   const grouped = (["Prépa", "Association", "École", "Partenaire"] as const)
     .map((cat) => ({
       cat,
+      label: sectionMeta[cat],
       items: others.filter((e) => e.category === cat),
-      ...sectionMeta[cat],
     }))
     .filter((g) => g.items.length > 0);
 
@@ -46,16 +47,14 @@ export default function ExposantsPage() {
         <CtaButton />
       </PageHero>
 
-      <section className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
+      <PageShell narrow>
         <Reveal>
           <div className="border-l-2 border-saem-coral pl-5">
-            <p className="text-xs font-bold tracking-[0.2em] text-saem-coral uppercase">
-              Facultés<span className="text-saem-coral">*</span>
-            </p>
+            <SectionLabel>Facultés*</SectionLabel>
             <p className="mt-3 text-sm leading-relaxed text-saem-night/70">
               {FACULTIES_ASTERISK}
             </p>
-            <ul className="mt-5 flex flex-wrap gap-x-2 gap-y-2">
+            <ul className="mt-5 flex flex-wrap gap-2">
               {facultyStudents.map((item) => (
                 <li
                   key={item.id}
@@ -65,21 +64,13 @@ export default function ExposantsPage() {
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs text-saem-night/45">
-              Stands tenus par des étudiants — pas de représentation officielle
-              d&apos;université.
-            </p>
           </div>
         </Reveal>
 
         <div className="mt-14 space-y-12">
           {grouped.map((group) => (
             <Reveal key={group.cat}>
-              <h2
-                className={`text-xs font-bold tracking-[0.22em] uppercase ${group.tone === "text-saem-yellow" ? "text-saem-turquoise-deep" : group.tone}`}
-              >
-                {group.label}
-              </h2>
+              <SectionLabel>{group.label}</SectionLabel>
               <ul className="mt-4 divide-y divide-saem-night/10 border-t border-saem-night/10">
                 {group.items.map((item) => (
                   <li
@@ -103,14 +94,13 @@ export default function ExposantsPage() {
             </Reveal>
           ))}
         </div>
-      </section>
+      </PageShell>
 
       <section className="border-t border-saem-night/5 bg-white py-14 sm:py-16">
         <div className="mx-auto grid max-w-6xl items-start gap-10 px-5 sm:px-8 lg:grid-cols-2">
           <Reveal>
-            <h2 className="font-display text-3xl font-extrabold text-saem-night">
-              Vous souhaitez exposer ?
-            </h2>
+            <SectionLabel>Partenaires</SectionLabel>
+            <SectionTitle>Vous souhaitez exposer ?</SectionTitle>
             <p className="mt-3 text-saem-night/70">
               Prépas, associations ou organismes d&apos;orientation : écrivez-nous.
             </p>
@@ -122,12 +112,12 @@ export default function ExposantsPage() {
             </a>
           </Reveal>
           <Reveal delay={1}>
-            <div className="rounded-[1.5rem] border border-saem-night/8 bg-saem-cream/60 p-5 sm:p-8">
+            <Panel className="bg-saem-cream/70">
               <p className="mb-4 font-display text-xl font-bold text-saem-night">
                 Visiteur ? Inscrivez-vous
               </p>
               <RegistrationForm source="exposants" compact />
-            </div>
+            </Panel>
           </Reveal>
         </div>
       </section>

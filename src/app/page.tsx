@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { CtaButton } from "@/components/CtaButton";
 import { Countdown } from "@/components/Countdown";
-import { EkgLine } from "@/components/EkgLine";
 import { FaqList } from "@/components/FaqList";
-import { Marquee } from "@/components/Marquee";
 import { RegistrationForm } from "@/components/RegistrationForm";
 import { Reveal } from "@/components/Reveal";
 import { CONFERENCES, EVENT, EXHIBITORS, FACULTIES_ASTERISK } from "@/lib/event";
@@ -53,23 +51,17 @@ export default function HomePage() {
             </span>
           </div>
 
-          <h1 className="animate-fade-up-delay mt-6 max-w-5xl font-display text-[clamp(2.75rem,9vw,6.5rem)] leading-[0.92] font-extrabold text-white">
+          <h1 className="animate-fade-up-delay mt-6 max-w-5xl font-display text-[clamp(2.75rem,8.5vw,6rem)] leading-[1.12] font-extrabold text-white">
             Salon des
             <br />
-            <span className="relative inline-block">
-              <span className="relative z-10 rounded-[0.2em] bg-saem-coral px-[0.18em] py-[0.02em]">
-                Études
-              </span>
+            <span className="mt-1 inline-block rounded-[0.22em] bg-saem-coral px-[0.2em] py-[0.08em]">
+              Études
             </span>
             <br />
-            de Médecine
+            de <span className="text-saem-yellow">Médecine</span>
           </h1>
 
-          <div className="animate-fade-up-delay mt-4 max-w-xl">
-            <EkgLine className="h-10 sm:h-12" />
-          </div>
-
-          <p className="animate-fade-up-delay-2 mt-4 max-w-lg text-base leading-relaxed text-white/90 sm:text-lg">
+          <p className="animate-fade-up-delay-2 mt-7 max-w-lg text-base leading-relaxed text-white/90 sm:text-lg">
             {EVENT.tagline}
           </p>
 
@@ -86,19 +78,6 @@ export default function HomePage() {
 
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-saem-cream to-transparent" />
       </section>
-
-      <Marquee
-        items={[
-          "Parcoursup",
-          "PASS / LAS",
-          "Étudiants de fac*",
-          "Prépas",
-          "Italie · Espagne",
-          "Gratuit",
-          "8 nov. 2026",
-          "Paris",
-        ]}
-      />
 
       {/* QUAND / OÙ — split panels */}
       <section className="px-5 py-10 sm:px-8 sm:py-14">

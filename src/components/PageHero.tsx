@@ -18,7 +18,7 @@ export function PageHero({ eyebrow, title, description, children }: Props) {
             {eyebrow}
           </p>
         )}
-        <h1 className="mt-4 max-w-3xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-extrabold leading-[1.02] text-white">
+        <h1 className="mt-4 max-w-3xl font-display text-[clamp(2.4rem,6vw,4.2rem)] font-extrabold leading-[1.15] text-white">
           {title}
         </h1>
         {description && (

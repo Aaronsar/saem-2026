@@ -17,7 +17,7 @@ export default function InscriptionPage() {
           <>
             Réserve
             <br />
-            ta <span className="rounded-[0.2em] bg-saem-coral px-[0.15em]">place</span>
+            ta <span className="text-saem-yellow">place</span>
           </>
         }
         description={`Invitation nominative pour le ${EVENT.dateLabel}. Entrée gratuite.`}

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CtaButton } from "@/components/CtaButton";
-import { Marquee } from "@/components/Marquee";
 import { PageHero } from "@/components/PageHero";
 import { RegistrationForm } from "@/components/RegistrationForm";
 import { Reveal } from "@/components/Reveal";
@@ -39,23 +38,13 @@ export default function ExposantsPage() {
           <>
             Qui sera
             <br />
-            <span className="rounded-[0.2em] bg-saem-coral px-[0.15em]">sur place</span> ?
+            <span className="text-saem-yellow">sur place</span> ?
           </>
         }
         description="Prépas, associations, écoles européennes et stands d'étudiants de facultés*."
       >
         <CtaButton />
       </PageHero>
-
-      <Marquee
-        items={[
-          "Étudiants de fac*",
-          "Diploma Santé",
-          "Link Campus · Rome",
-          "Universidad Europea",
-          "Associations",
-        ]}
-      />
 
       <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-16">
         <Reveal>

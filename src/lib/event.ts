@@ -98,6 +98,14 @@ export const EXHIBITORS: Exhibitor[] = [
     description:
       "Université privée espagnole multi-campus (Madrid, Málaga, Valence et autres) — orientation vers les études de santé en Espagne.",
   },
+  {
+    id: "hermione",
+    name: "Hermione Médecine",
+    category: "Partenaire",
+    city: "Média",
+    description:
+      "Média spécialisé dans les études et l'univers de la médecine — contenus, interviews et conseils d'orientation.",
+  },
 ];
 
 export type Conference = {

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { CtaButton } from "@/components/CtaButton";
+import { ExhibitorGrid } from "@/components/ExhibitorGrid";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
-import { PageShell, Panel, SectionLabel, SectionTitle } from "@/components/ui";
+import { Panel, SectionLabel } from "@/components/ui";
 import { EVENT, EXHIBITORS, FACULTIES_ASTERISK } from "@/lib/event";
 
 export const metadata: Metadata = {
@@ -14,22 +15,7 @@ export const metadata: Metadata = {
 const facultyStudents = EXHIBITORS.filter((e) => e.category === "Facultés*");
 const others = EXHIBITORS.filter((e) => e.category !== "Facultés*");
 
-const sectionMeta: Record<string, string> = {
-  Prépa: "Prépas",
-  Association: "Associations",
-  École: "Écoles & mobilité",
-  Partenaire: "Partenaires",
-};
-
 export default function ExposantsPage() {
-  const grouped = (["Prépa", "Association", "École", "Partenaire"] as const)
-    .map((cat) => ({
-      cat,
-      label: sectionMeta[cat],
-      items: others.filter((e) => e.category === cat),
-    }))
-    .filter((g) => g.items.length > 0);
-
   return (
     <>
       <PageHero
@@ -46,54 +32,43 @@ export default function ExposantsPage() {
         <CtaButton source="exposants-hero" />
       </PageHero>
 
-      <PageShell narrow>
+      <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-16">
         <Reveal>
-          <div className="border-l-2 border-saem-coral pl-5">
-            <SectionLabel>Facultés*</SectionLabel>
-            <p className="mt-3 text-sm leading-relaxed text-saem-night/70">
-              {FACULTIES_ASTERISK}
-            </p>
-            <ul className="mt-5 flex flex-wrap gap-2">
-              {facultyStudents.map((item) => (
-                <li
-                  key={item.id}
-                  className="rounded-pill bg-white px-3.5 py-1.5 text-sm font-semibold text-saem-night"
-                >
-                  {item.name.replace(/^Étudiants — /, "")}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <p className="max-w-3xl text-sm leading-relaxed text-saem-night/70">
+            <span className="font-semibold text-saem-coral">*</span>{" "}
+            {FACULTIES_ASTERISK}
+          </p>
         </Reveal>
 
-        <div className="mt-14 space-y-12">
-          {grouped.map((group) => (
-            <Reveal key={group.cat}>
-              <SectionLabel>{group.label}</SectionLabel>
-              <ul className="mt-4 divide-y divide-saem-night/10 border-t border-saem-night/10">
-                {group.items.map((item) => (
-                  <li
-                    key={item.id}
-                    className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
-                  >
-                    <div>
-                      <h3 className="font-display text-xl font-extrabold text-saem-night">
-                        {item.name}
-                      </h3>
-                      <p className="mt-1 text-sm text-saem-night/60">
-                        {item.description}
-                      </p>
-                    </div>
-                    <p className="shrink-0 text-xs font-bold tracking-wide text-saem-night/40 uppercase">
-                      {item.city}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
+        <div className="mt-10">
+          <Reveal>
+            <h2 className="font-display text-2xl font-extrabold text-saem-night sm:text-3xl">
+              Exposants 2026
+            </h2>
+            <p className="mt-2 text-sm text-saem-night/60">
+              Liste mise à jour régulièrement jusqu&apos;au {EVENT.dateShort}.
+            </p>
+          </Reveal>
+          <div className="mt-8">
+            <ExhibitorGrid items={others} />
+          </div>
         </div>
-      </PageShell>
+
+        <div className="mt-14">
+          <Reveal>
+            <h2 className="font-display text-2xl font-extrabold text-saem-night sm:text-3xl">
+              Stands étudiants — facultés*
+            </h2>
+            <p className="mt-2 text-sm text-saem-night/60">
+              Stands tenus par des étudiants — pas de représentation officielle
+              d&apos;université.
+            </p>
+          </Reveal>
+          <div className="mt-8">
+            <ExhibitorGrid items={facultyStudents} />
+          </div>
+        </div>
+      </section>
 
       <section className="border-t border-saem-night/5 bg-white py-14 sm:py-16">
         <div className="mx-auto grid max-w-6xl items-stretch gap-4 px-5 sm:px-8 md:grid-cols-2">

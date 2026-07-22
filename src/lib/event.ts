@@ -15,6 +15,37 @@ export const EVENT = {
   email: "contact@salon-etudes-medecine.fr",
 } as const;
 
+export const STORY = {
+  collective: "Collectif SAEM",
+  headline: "Créé par d'anciens étudiants en médecine,",
+  headlineAccent: "pour ceux qui arrivent.",
+  lead:
+    "Le Salon des Études de Médecine est né d'un collectif d'anciens étudiants en médecine, regroupant des profils issus de toutes les facultés de médecine de France. Nous savons ce que c'est de choisir sa voie dans le flou — Parcoursup, PASS, LAS, prépas, études à l'étranger…",
+  body:
+    "Nous voulons que chaque lycéen soit bien orienté, bien conseillé. C'est pour ça que nous avons créé ce collectif : réunir étudiants, prépas, associations et partenaires pour que chaque famille reparte avec des réponses claires, des conseils concrets, et la confiance d'avoir choisi en connaissance de cause.",
+  mission:
+    "Notre mission : une orientation médecine juste, humaine et accessible — sans filtre marketing, avec la parole de ceux qui l'ont vécue.",
+  values: [
+    { title: "Parler vrai", text: "Des retours d'expérience, pas des slides corporate." },
+    { title: "Toute la France", text: "Un collectif qui relie les facultés de médecine du pays." },
+    { title: "Bien orienter", text: "Pour que tu choisisses en connaissance de cause." },
+  ],
+  cities: [
+    "Paris",
+    "Lyon",
+    "Marseille",
+    "Lille",
+    "Bordeaux",
+    "Toulouse",
+    "Nantes",
+    "Strasbourg",
+    "Montpellier",
+    "Rennes",
+    "Nice",
+    "Grenoble",
+  ],
+} as const;
+
 /** Mention légale / transparence : les facs ne sont pas exposantes. */
 export const FACULTIES_ASTERISK =
   "Des étudiants de facultés de médecine d'Île-de-France viendront répondre aux questions des parents et des lycéens / étudiants. Les universités elles-mêmes ne tiennent pas de stand et ne sont pas partenaires officiels du salon.";
@@ -193,6 +224,10 @@ export const CONFERENCES: Conference[] = [
 ];
 
 export const FAQ = [
+  {
+    q: "Qui organise le Salon des Études de Médecine ?",
+    a: "Le SAEM est porté par un collectif d'anciens étudiants en médecine, regroupant des profils issus de toutes les facultés de médecine de France. Notre but : que chaque lycéen soit bien orienté et bien conseillé.",
+  },
   {
     q: "Comment m'inscrire au salon ?",
     a: "Cliquez sur « Je m'inscris » n'importe où sur le site pour ouvrir le formulaire, puis validez. Vous recevrez une confirmation par e-mail. L'entrée est gratuite et nominative.",

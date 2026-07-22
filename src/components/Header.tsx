@@ -8,6 +8,7 @@ import { useRegistrationModal } from "./RegistrationModalContext";
 
 const NAV = [
   { href: "/", label: "Accueil" },
+  { href: "/a-propos", label: "Qui sommes-nous" },
   { href: "/exposants", label: "Exposants" },
   { href: "/conferences", label: "Conférences" },
   { href: "/partenaires", label: "Partenaires" },
